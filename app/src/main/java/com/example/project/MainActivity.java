@@ -2,6 +2,10 @@ package com.example.project;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView textViewName;
     SharedPreferences preferences;
-
+    EditText EditText1;
+    Button save;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +28,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+        save = findViewById(R.id.save);
+        EditText1 = findViewById(R.id.edit_text);
         textViewName = findViewById(R.id.name);
         preferences = getSharedPreferences("preferences",MODE_PRIVATE);
+
+
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("==>","rsh!");
+                Log.d("==",EditText1.getText().toString());
+
+
+
+
+            }
+        });
+
         /*
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("name", "emil");
