@@ -1,5 +1,6 @@
 package com.example.project;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,16 +46,30 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("==",EditText1.getText().toString());
 
 
+                openNewActivity();
+
+
+
+
 
 
             }
         });
+
+
+
+
 
         /*
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("name", "emil");
         editor.apply();
         */
+    }
+
+    private void openNewActivity() {
+        Intent intent = new Intent(this, SecondaryActivity.class);
+        startActivity(intent);
     }
 
     @Override
