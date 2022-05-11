@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("===", preferences.getString("name1", "nopes"));
                 openNewActivity();
 
+
             }
         });
 
