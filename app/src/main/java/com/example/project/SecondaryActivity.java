@@ -14,7 +14,7 @@ public class SecondaryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
-
+        Log.d("===create","geaga");
         SharedPreferences myPreferenceRef = getSharedPreferences("preferences", MODE_PRIVATE);
 
         //myPreferenceRef.getString("name","no name found");

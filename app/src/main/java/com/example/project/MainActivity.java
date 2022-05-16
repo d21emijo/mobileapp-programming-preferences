@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Log.d("===create","geaga");
 
 
         save = findViewById(R.id.save);
@@ -80,6 +81,20 @@ public class MainActivity extends AppCompatActivity {
         //textViewName.setText(name);
         textViewName.setText(preferences.getString("name1", "No preference found."));
         //Log.d("===nn",name);
+        Log.d("===resume","geaga");
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("===stop","geaga");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("===destroy","geagatutu");
     }
 }
