@@ -1,42 +1,65 @@
 
 # Rapport
 
-**Skriv din rapport här!**
 
-_Du kan ta bort all text som finns sedan tidigare_.
 
-## Följande grundsyn gäller dugga-svar:
+## skapa preference
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+![image](https://user-images.githubusercontent.com/102797583/168614956-a751a3cd-b223-44ef-bbf9-891bb3748a62.png)
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+Det första vi gör är att skapa en ny instans preferences av sharedpreferences som vi döper preferences till när vi klickar på knappen.
+
+därefter hämtar och lägger vi in texten från EditText1 som användaren skrivit och sparar det i myPreferenceEditor i namnet name1 i koden nedan.
+
+Det sista vi gör på denna sidan är att öppna en ny screen med hjälp av funktionen openNewActivity.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+            public void onClick(View view) {
+
+                SharedPreferences preferences = getSharedPreferences("preferences",MODE_PRIVATE);
+                SharedPreferences.Editor myPreferenceEditor = preferences.edit();
+
+                myPreferenceEditor.putString("name1",EditText1.getText().toString());
+                myPreferenceEditor.apply();
+
+                Log.d("===", preferences.getString("name1", "nopes"));
+                openNewActivity();
 ```
 
-Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+## använda sharedpreferences för att skicka dessa 
 
-Läs gärna:
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+![image](https://user-images.githubusercontent.com/102797583/168615044-af6d8326-69ea-45b7-8528-2cf19df8eabb.png)
+
+
+i SecondaryActivity skapar vi en instans myPreferenceRef av SharedPrefences i vilket vi hämtar getSharedPreferences med namnet preferences,
+
+därefter använder vi setText för att skriva om textvyn, det vi skriver ut är av myPreferenceRef och hämtar name1 som vi la i putString i våran MainActivity.
+
+
+```
+        SharedPreferences myPreferenceRef = getSharedPreferences("preferences", MODE_PRIVATE);
+
+        Log.d("===second",myPreferenceRef.getString("name1","no name found"));
+
+        TextView textView = findViewById(R.id.text_Name);
+        textView.setText(myPreferenceRef.getString("name1", "hejdå"));
+
+```
+
+![image](https://user-images.githubusercontent.com/102797583/168615097-f5e1372b-6c99-4633-8bdd-66c028193f45.png)
+
+
+## behålla preferences
+
+
+för att behålla den data som skrevs i MainActivity gör vi samma som i våran SecondActivity bara det att vi skriver våran kod i onResume så sparas våra preferencer.
+
+```
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+        textViewName.setText(preferences.getString("name1", "No preference found."));
+        Log.d("===resume","geaga");
+```
