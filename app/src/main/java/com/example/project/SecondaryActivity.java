@@ -17,9 +17,8 @@ public class SecondaryActivity extends AppCompatActivity {
         Log.d("===create","geaga");
         SharedPreferences myPreferenceRef = getSharedPreferences("preferences", MODE_PRIVATE);
 
-        //myPreferenceRef.getString("name","no name found");
-
         Log.d("===second",myPreferenceRef.getString("name1","no name found"));
+
         TextView textView = findViewById(R.id.text_Name);
         textView.setText(myPreferenceRef.getString("name1", "hejdå"));
 

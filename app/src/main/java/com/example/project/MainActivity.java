@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Log.d("===create","geaga");
 
 
         save = findViewById(R.id.save);
@@ -39,17 +38,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
-
                 SharedPreferences preferences = getSharedPreferences("preferences",MODE_PRIVATE);
                 SharedPreferences.Editor myPreferenceEditor = preferences.edit();
 
-
-
-
                 myPreferenceEditor.putString("name1",EditText1.getText().toString());
                 myPreferenceEditor.apply();
-                Log.d("===", preferences.getString("name1", "nopes"));
+
+                Log.d("===TEST", preferences.getString("name1", "nopes"));
                 openNewActivity();
 
 
@@ -60,12 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //
-        /*
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("name", "test");
-        editor.apply();
-        */
+
     }
 
     private void openNewActivity() {
@@ -77,24 +67,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
-        //String name = preferences.getString("name", "NO NAME FOUdthrhtrhrND");
-        //textViewName.setText(name);
         textViewName.setText(preferences.getString("name1", "No preference found."));
-        //Log.d("===nn",name);
-        Log.d("===resume","geaga");
+        Log.d("===resume",preferences.getString("name1", "nopegggs"));
 
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("===stop","geaga");
 
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("===destroy","geagatutu");
-    }
+
 }
